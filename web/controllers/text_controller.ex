@@ -2,6 +2,7 @@ defmodule PhoenixFirstApp.TextController do
   use PhoenixFirstApp.Web, :controller
 
   alias PhoenixFirstApp.Text
+  import AlchemicAvatar
 
   def index(conn, _params) do
     texts = Repo.all(Text)
@@ -20,15 +21,14 @@ defmodule PhoenixFirstApp.TextController do
       {:ok, _text} ->
         conn
         |> put_flash(:info, "Text created successfully.")
-        |> redirect(to: text_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    text = Repo.get!(Text, id)
-    render(conn, "show.html", text: text)
+  def show(conn, %{"text" => text}) do
+    image = AlchemicAvatar.generate text, 200
+    render(conn, "show.html", image: image)
   end
 
   def edit(conn, %{"id" => id}) do
@@ -60,6 +60,5 @@ defmodule PhoenixFirstApp.TextController do
 
     conn
     |> put_flash(:info, "Text deleted successfully.")
-    |> redirect(to: text_path(conn, :index))
   end
 end

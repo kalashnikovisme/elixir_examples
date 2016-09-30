@@ -14,7 +14,6 @@
       <td><%= text.body %></td>
 
       <td class="text-right">
-        <%= link "Show", to: text_path(@conn, :show, text), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: text_path(@conn, :edit, text), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: text_path(@conn, :delete, text), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
@@ -23,4 +22,3 @@
   </tbody>
 </table>
 
-<%= link "New text", to: text_path(@conn, :new) %>

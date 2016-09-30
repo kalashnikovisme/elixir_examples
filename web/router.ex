@@ -17,7 +17,7 @@ defmodule PhoenixFirstApp.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/texts", TextController
+    get "/:text", TextController, :show
   end
 
   # Other scopes may use custom stacks.

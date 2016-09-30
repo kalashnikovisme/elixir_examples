@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :phoenix_first_app,
-  ecto_repos: [PhoenixFirstApp.Repo]
+  ecto_repos: [PhoenixFirstApp.Repo],
+  haml: PhoenixHaml.Engine
 
 # Configures the endpoint
 config :phoenix_first_app, PhoenixFirstApp.Endpoint,
