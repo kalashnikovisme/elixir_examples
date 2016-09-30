@@ -24,11 +24,12 @@ defmodule AlchemicAvatar do
     filename = filename(identity, size)
     fullsize = filename(identity, @fullsize)
 
-    if File.exists?(filename) do
+    filename = if File.exists?(filename) do
       filename
     else
       generate_file(identity, filename, fullsize, size)
     end
+    Enum.join Enum.drop(String.split(filename, "/"), 8), "/"
   end
 
   defp do_generate(identity, size, false) do
@@ -57,7 +58,8 @@ defmodule AlchemicAvatar do
 
   defp dir_path(identity) do
     path = "#{cache_path}/#{identity.letter}/#{identity.color |> Enum.join("_")}"
-    :code.priv_dir(AlchemicAvatar.Config.app_name) |> Path.join(path)
+    #:code.priv_dir(AlchemicAvatar.Config.app_name) |> Path.join(path)
+    "/home/pavel/projects/phoenix_first_app/web/static/assets/images/" |> Path.join(path)
   end
 
   defp filename(identity, size) do
