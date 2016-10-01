@@ -1,3 +1,4 @@
+require IEx
 defmodule AlchemicAvatar do
   @moduledoc """
   `AlchemicAvatar.generate` - generate avatar
@@ -48,6 +49,13 @@ defmodule AlchemicAvatar do
 
   defp identity(<<char, _rest::binary>> = username) do
     color = AlchemicAvatar.Color.from_name(username)
+    letter = <<char>>
+    %{color: color, letter: letter}
+  end
+
+  defp identity_cyrillic(<<char, _rest::binary>> = username) do
+    color = AlchemicAvatar.Color.from_name(username)
+    if char > 127
     letter = <<char>>
     %{color: color, letter: letter}
   end

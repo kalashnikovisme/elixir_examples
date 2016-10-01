@@ -6,7 +6,7 @@ defmodule PhoenixFirstApp.TextController do
   import AlchemicAvatar
 
   def show(conn, %{"text" => text}) do
-    chars = Enum.drop String.split(text, ""), -1
+    chars = Enum.drop String.split("Микрофон общий", ""), -1
     images = Enum.map chars, fn(x) -> AlchemicAvatar.generate x, 200 end
     render(conn, "show.html", images: images)
   end
